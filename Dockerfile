@@ -1,7 +1,4 @@
-FROM quay.io/keycloak/keycloak:22.0.0
-
-# Set the external hostname for Keycloak (replace with your Clever Cloud app URL)
-ENV KC_HOSTNAME=app-113b515e-dc1e-412b-afff-57b43ba3e238.cleverapps.io
+FROM keycloak/keycloak:26.0.7-0
 
 # Enable HTTP mode (required for Clever Cloud)
 ENV KC_HTTP_ENABLED=true
@@ -18,7 +15,7 @@ ENV KC_PROXY_ADDRESS_FORWARDING=true
 ENV KC_SPI_THEME_DEFAULT=keycloak
 
 # Copy the custom Keycloakify theme JAR
-COPY keycloakify-starter-keycloak-theme-4.8.2.jar /opt/keycloak/providers/
+COPY my-theme.jar /opt/keycloak/providers/
 
 # Build Keycloak with the custom theme
 RUN /opt/keycloak/bin/kc.sh build
