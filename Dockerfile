@@ -15,8 +15,8 @@ ENV KC_DB_PASSWORD=B1ZlXFJbhmfyBdu9XSGr
 ENV KC_DB_SCHEMA=public
 
 # Set correct hostname for Keycloak
-ENV KC_HOSTNAME=lwgjycyjutwlipojbrzi-keycloak.services.clever-cloud.com
-ENV KC_HOSTNAME_ADMIN=lwgjycyjutwlipojbrzi-keycloak.services.clever-cloud.com
+# ENV KC_HOSTNAME=lwgjycyjutwlipojbrzi-keycloak.services.clever-cloud.com
+# ENV KC_HOSTNAME_ADMIN=lwgjycyjutwlipojbrzi-keycloak.services.clever-cloud.com
 ENV KC_HOSTNAME_STRICT=false
 ENV KC_HOSTNAME_STRICT_HTTPS=false
 
