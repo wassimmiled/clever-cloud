@@ -1,0 +1,9 @@
+FROM quay.io/keycloak/keycloak:22.0.5
+ENV KC_DB=postgres
+ENV KC_DB_URL=jdbc:postgresql://$POSTGRESQL_ADDON_HOST:$POSTGRESQL_ADDON_PORT/$POSTGRESQL_ADDON_DB
+ENV KC_DB_USERNAME=$POSTGRESQL_ADDON_USER
+ENV KC_DB_PASSWORD=$POSTGRESQL_ADDON_PASSWORD
+ENV KC_HTTP_ENABLED=true
+
+# Run Keycloak in production mode
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start"]
