@@ -1,5 +1,8 @@
 FROM quay.io/keycloak/keycloak:22.0.0
 
+# Set the external hostname for Keycloak (replace with your Clever Cloud app URL)
+ENV KC_HOSTNAME=app-113b515e-dc1e-412b-afff-57b43ba3e238.cleverapps.io
+
 # Enable HTTP mode (required for Clever Cloud)
 ENV KC_HTTP_ENABLED=true
 
@@ -7,13 +10,9 @@ ENV KC_HTTP_ENABLED=true
 ENV KEYCLOAK_ADMIN=admin
 ENV KEYCLOAK_ADMIN_PASSWORD=admin
 
-# Set database URL (use default H2 or configure to use external DB)
-# Make sure to configure the proper DB URL if needed
-# For example:
-# ENV KC_DB=postgres
-# ENV KC_DB_URL=jdbc:postgresql://<host>:<port>/<db_name>
-# ENV KC_DB_USERNAME=<username>
-# ENV KC_DB_PASSWORD=<password>
+# Enable proxy mode for reverse proxy compatibility
+ENV KC_PROXY=edge
+ENV KC_PROXY_ADDRESS_FORWARDING=true
 
 # Set Keycloak to use the default theme (make sure the JAR is properly loaded)
 ENV KC_SPI_THEME_DEFAULT=keycloak
@@ -28,6 +27,9 @@ RUN /opt/keycloak/bin/kc.sh build
 ENV KC_HTTP_RESPONSE_HEADERS="strict-transport-security=max-age=31536000;includeSubDomains, x-frame-options=ALLOWALL, content-security-policy=frame-ancestors *"
 ENV KC_SPI_THEME_STATIC_MAX_AGE=0
 ENV KC_SPI_THEME_CACHE_TTL=0
+
+# Disable HTTP mode to ensure Keycloak uses HTTPS
+ENV KC_HTTP_ENABLED=false
 
 # Ensure Keycloak runs in development mode
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start-dev"]
