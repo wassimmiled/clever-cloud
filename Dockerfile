@@ -1,4 +1,4 @@
-FROM keycloak/keycloak:26.0.7-0
+FROM quay.io/keycloak/keycloak:22.0.0
 
 # Enable HTTP mode (required for Clever Cloud)
 ENV KC_HTTP_ENABLED=true
@@ -25,7 +25,7 @@ ENV KC_PROXY=edge
 ENV KC_PROXY_ADDRESS_FORWARDING=true
 
 # Copy the custom Keycloakify theme JAR
-COPY my-theme.jar /opt/keycloak/providers/
+COPY keycloakify-starter-keycloak-theme-4.8.2.jar /opt/keycloak/providers/
 
 # Build Keycloak with the custom theme
 RUN /opt/keycloak/bin/kc.sh build
