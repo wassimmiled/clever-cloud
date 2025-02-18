@@ -1,8 +1,6 @@
-<<<<<<< Updated upstream
-FROM quay.io/keycloak/keycloak:22.0.0 
-=======
+
 FROM quay.io/keycloak/keycloak:22.0.0
->>>>>>> Stashed changes
+
 
 # Enable HTTP mode (required for Clever Cloud)
 ENV KC_HTTP_ENABLED=true
